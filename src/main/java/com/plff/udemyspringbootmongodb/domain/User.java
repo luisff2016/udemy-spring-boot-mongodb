@@ -2,6 +2,7 @@ package com.plff.udemyspringbootmongodb.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,13 +19,21 @@ public class User implements Serializable{
 	public User() {
 		
 	}
-
+	
 	public User(String id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 	}
+	
+	public User(Optional<User> u) {
+		super();
+		this.id = u.get().getId();
+		this.name = u.get().getName();
+		this.email = u.get().getEmail();
+	}
+
 
 	public String getId() {
 		return id;
